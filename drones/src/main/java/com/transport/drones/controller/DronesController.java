@@ -30,6 +30,29 @@ public class DronesController {
         }
     }
 
+    @GetMapping(value="/{boneType}/{patientsNumber}")
+    public ResponseEntity<Fractures> getFractures(
+            @PathVariable("hospitalName") String hospitalName,
+            @PathVariable("boneType") String boneType,
+            @PathVariable("patientsNumber") int patientsNumber) {
+
+        Fractures fractures = fracturesService.getFractures(hospitalName, boneType, patientsNumber);
+        fractures.add(linkTo(methodOn(FracturesController.class)
+                        .getFractures(hospitalName, boneType,patientsNumber))
+                        .withSelfRel(),
+                linkTo(methodOn(FracturesController.class)
+                        .createFractures(hospitalName, fractures, null))
+                        .withRel("Create an entry in the fracture register"),
+                linkTo(methodOn(FracturesController.class)
+                        .updateFractures(hospitalName, fractures, null))
+                        .withRel("Update an entry in the fracture register"),
+                linkTo(methodOn(FracturesController.class)
+                        .deleteFractures(hospitalName, boneType,patientsNumber,null))
+                        .withRel("Delete an entry in the fracture register"));
+        return ResponseEntity.ok(fractures);
+    }
+
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getDroneById(@PathVariable("id") Integer id) {
         try {
@@ -52,15 +75,24 @@ public class DronesController {
         }
     }
 
-    @PostMapping("/")
-    public ResponseEntity<Object> addDrone(@RequestBody Drone drone) {
-        try {
-            Drone savedDrone = service.addDrone(drone);
-            return new ResponseEntity<Object>(savedDrone, HttpStatus.OK);
-        } catch(Exception ex) {
-            log.error(ex.getMessage(), ex);
-            return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-        }
+//    @PostMapping("/")
+//    public ResponseEntity<Object> addDrone(@RequestBody Drone drone) {
+//        try {
+//            Drone savedDrone = service.addDrone(drone);
+//            return new ResponseEntity<Object>(savedDrone, HttpStatus.OK);
+//        } catch(Exception ex) {
+//            log.error(ex.getMessage(), ex);
+//            return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+//        }
+//    }
+
+    @PostMapping
+    public ResponseEntity<String> createFractures(
+            @PathVariable("hospitalName") String hospitalName,
+            @RequestBody Fractures request,
+            @RequestHeader(value = "Accept-Language",required = false)
+                    Locale locale) {
+        return ResponseEntity.ok(fracturesService.createFractures(request, hospitalName, locale));
     }
 
     @PutMapping("/{id}")

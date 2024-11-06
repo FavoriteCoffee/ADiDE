@@ -63,4 +63,24 @@ public class DroneService {
 
 }
 
+@Service
+public class FracturesService {
+
+    @Autowired
+    MessageSource messages;
+
+
+    public String createFractures(Fractures fractures, String hospitalName, Locale locale) {
+        String responseMessage = null;
+        if(fractures != null) {
+            fractures.setHospitalName(hospitalName);
+            responseMessage = String.format(messages.getMessage("fractures.create.message", null,locale), fractures.toString());
+        }
+
+        return responseMessage;
+    }
+}
+
+
+
 
