@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import com.transport.drones.repository.DroneRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import com.transport.drones.model.Drone;
@@ -36,49 +38,6 @@ public class DroneService {
         repository.deleteById(id);
     }
 
-
-//    public Drone getDrones(String hospitalName, String boneType, int patientsNumber) {
-//        Drone drones = new Drone();
-//        drones.setId(new Random().nextInt(1000));
-//        drones.setHospitalName(hospitalName);
-//        drones.setBoneType(boneType);
-//        drones.setSegmentBone("diaphyseal");
-//        drones.setFractureType("closed");
-//        drones.setInfection(false);
-//        drones.setPatientsNumber(patientsNumber);
-//
-//        return drones;
-//
-//    }
-//
-//    public String createDrones(Drone drones, String hospitalName){
-//        String responseMessage = null;
-//        if(drones != null) {
-//            drones.setHospitalName(hospitalName);
-//            responseMessage = String.format("This is the post and the object is: %s", drones.toString());
-//        }
-//
-//        return responseMessage;
-//    }
-
-}
-
-@Service
-public class FracturesService {
-
-    @Autowired
-    MessageSource messages;
-
-
-    public String createFractures(Fractures fractures, String hospitalName, Locale locale) {
-        String responseMessage = null;
-        if(fractures != null) {
-            fractures.setHospitalName(hospitalName);
-            responseMessage = String.format(messages.getMessage("fractures.create.message", null,locale), fractures.toString());
-        }
-
-        return responseMessage;
-    }
 }
 
 
