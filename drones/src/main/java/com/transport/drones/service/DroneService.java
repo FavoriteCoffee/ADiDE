@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.transport.drones.controller.DronesController;
 import com.transport.drones.model.DroneState;
 import com.transport.drones.repository.DroneRepository;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,19 +16,25 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Service;
 
 import com.transport.drones.model.Drone;
+import org.springframework.web.servlet.LocaleResolver;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class DroneService {
     private final DroneRepository repository;
+    private final ServletConfig config;
+    private final MessageSource messageSource;
+    private final LocaleResolver localeResolver;
 
     public Iterable<Drone> getAllDrones(){
         return repository.findAll();
     }
     public Drone getDrone(int id, HttpServletRequest request){
         Optional<Drone> result =  repository.findById(id);
-        if (result.isEmpty()) return null;
+        if (result.isEmpty()) {
+            log.warn(messageSource.getMessage("drones.id_error.message", new Object[]{id}, localeResolver.resolveLocale(request)));
+            return null;}
         Drone drone = result.get();
 
         Drone updatedDrone = new Drone();
@@ -59,8 +66,8 @@ public class DroneService {
         return repository.save(drone);
     }
 
-    public Drone updateDrone(int id, Drone drone){
-        if (repository.findById(id).isEmpty()) throw new IllegalArgumentException("No drones found with provided id");
+    public Drone updateDrone(int id, Drone drone, HttpServletRequest request){
+        if (repository.findById(id).isEmpty()) throw new IllegalArgumentException(messageSource.getMessage("drones.id_error.message", new Object[]{id}, localeResolver.resolveLocale(request)));
         drone.setId(id);
         return repository.save(drone);
     }

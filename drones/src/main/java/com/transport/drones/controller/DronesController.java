@@ -74,7 +74,7 @@ public class DronesController {
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateDrone(@RequestBody Drone drone, @PathVariable("id") Integer id, HttpServletRequest request) {
         try {
-            Drone updatedDrone = service.updateDrone(id, drone);
+            Drone updatedDrone = service.updateDrone(id, drone, request);
             log.info(messageSource.getMessage("drones.update.message", new Object[]{updatedDrone.getSerialNumber(), updatedDrone.getId()}, localeResolver.resolveLocale(request)));
             return new ResponseEntity<Object>(updatedDrone, HttpStatus.OK);
         } catch(Exception ex) {
