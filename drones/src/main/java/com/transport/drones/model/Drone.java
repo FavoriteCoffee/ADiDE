@@ -2,6 +2,7 @@ package com.transport.drones.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.hateoas.RepresentationModel;
 
 
 /**
@@ -24,7 +25,7 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "Drone")
-public class Drone {
+public class Drone extends RepresentationModel<Drone> {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;

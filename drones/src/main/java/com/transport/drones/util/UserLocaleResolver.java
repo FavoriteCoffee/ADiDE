@@ -10,7 +10,9 @@ public class UserLocaleResolver implements LocaleResolver {
 
     @Override
     public Locale resolveLocale(HttpServletRequest request) {
-        final String lang = request.getHeader("Accept-language");
+        String lang = request.getHeader("Accept-language");
+        try {Locale.forLanguageTag(lang);}
+        catch (Throwable ignored) {lang = "ru";}
         return Locale.forLanguageTag(lang);
     }
 

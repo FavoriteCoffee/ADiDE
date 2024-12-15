@@ -36,9 +36,9 @@ public class DronesController {
         }
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getDroneById(@PathVariable("id") Integer id) {
+    public ResponseEntity<Object> getDroneById(@PathVariable("id") Integer id, HttpServletRequest request) {
         try {
-            Drone drone = service.getDrone(id);
+            Drone drone = service.getDrone(id, request);
             return new ResponseEntity<Object>(drone, HttpStatus.OK);
         } catch(Exception ex) {
             log.error(ex.getMessage(), ex);
@@ -49,7 +49,7 @@ public class DronesController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteDroneById(@PathVariable("id") Integer id, HttpServletRequest request) {
         try {
-            Drone drone = service.getDrone(id);
+            Drone drone = service.getDrone(id, request);
             service.deleteDrone(id);
             log.info(messageSource.getMessage("drones.delete.message", new Object[]{drone.getSerialNumber(), drone.getId()}, localeResolver.resolveLocale(request)));
             return new ResponseEntity<Object>(HttpStatus.OK);
@@ -63,7 +63,7 @@ public class DronesController {
     public ResponseEntity<Object> addDrone(@RequestBody Drone drone, HttpServletRequest request) {
         try {
             Drone savedDrone = service.addDrone(drone);
-            log.info(messageSource.getMessage("drones.create.message", new Object[]{savedDrone.getSerialNumber()}, localeResolver.resolveLocale(request)));
+            log.info(messageSource.getMessage("drones.create.message", new Object[]{savedDrone.getSerialNumber(), savedDrone.getId()}, localeResolver.resolveLocale(request)));
             return new ResponseEntity<Object>(savedDrone, HttpStatus.OK);
         } catch(Exception ex) {
             log.error(ex.getMessage(), ex);
@@ -75,7 +75,7 @@ public class DronesController {
     public ResponseEntity<Object> updateDrone(@RequestBody Drone drone, @PathVariable("id") Integer id, HttpServletRequest request) {
         try {
             Drone updatedDrone = service.updateDrone(id, drone);
-            log.info(messageSource.getMessage("drones.update.message", new Object[]{updatedDrone.getSerialNumber()}, localeResolver.resolveLocale(request)));
+            log.info(messageSource.getMessage("drones.update.message", new Object[]{updatedDrone.getSerialNumber(), updatedDrone.getId()}, localeResolver.resolveLocale(request)));
             return new ResponseEntity<Object>(updatedDrone, HttpStatus.OK);
         } catch(Exception ex) {
             log.error(ex.getMessage(), ex);
