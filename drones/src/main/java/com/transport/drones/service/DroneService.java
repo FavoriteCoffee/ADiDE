@@ -52,9 +52,9 @@ public class DroneService {
         }
 
         drone.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DronesController.class).getDroneById(id, request)).withSelfRel());
-        drone.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DronesController.class).addDrone(drone, null)).withRel(messageSource.getMessage("hateoas.create.link_name", new Object[]{}, localeResolver.resolveLocale(request)))));
-        drone.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DronesController.class).updateDrone(updatedDrone, id, null)).withRel(messageSource.getMessage("hateoas.update.link_name", new Object[]{}, localeResolver.resolveLocale(request)))));
-        drone.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DronesController.class).deleteDroneById(id, null)).withRel(messageSource.getMessage("hateoas.delete.link_name", new Object[]{}, localeResolver.resolveLocale(request)))));
+        drone.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DronesController.class).addDrone(drone, null)).withRel(messageSource.getMessage("hateoas.create.link_name", new Object[]{}, localeResolver.resolveLocale(request))));
+        drone.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DronesController.class).updateDrone(updatedDrone, id, null)).withRel(messageSource.getMessage("hateoas.update.link_name", new Object[]{}, localeResolver.resolveLocale(request))));
+        drone.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DronesController.class).deleteDroneById(id, null)).withRel(messageSource.getMessage("hateoas.delete.link_name", new Object[]{}, localeResolver.resolveLocale(request))));
         return drone;
     }
 
