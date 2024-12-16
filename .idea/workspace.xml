@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d17f204-f178-451f-b278-671496a20754" name="Changes" comment="tf is going on">
-      <change afterPath="$PROJECT_DIR$/drones/src/main/java/com/transport/drones/config/ServiceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/drones/src/main/resources/config/drones-dev.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/drones/src/main/resources/config/drones-h2.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/drones/src/main/resources/config/drones-prod.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/drones/src/main/resources/config/drones.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drones/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/drones/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drones/src/main/java/com/transport/drones/controller/DronesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/drones/src/main/java/com/transport/drones/controller/DronesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drones/src/main/java/com/transport/drones/service/DroneService.java" beforeDir="false" afterPath="$PROJECT_DIR$/drones/src/main/java/com/transport/drones/service/DroneService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drones/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/drones/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drones/src/main/resources/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/drones/src/main/resources/messages_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drones/src/main/resources/messages_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/drones/src/main/resources/messages_fr.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drones/src/main/resources/messages_ru.properties" beforeDir="false" afterPath="$PROJECT_DIR$/drones/src/main/resources/messages_ru.properties" afterDir="false" />
-    </list>
+    <list default="true" id="2d17f204-f178-451f-b278-671496a20754" name="Changes" comment="tf is going on" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
