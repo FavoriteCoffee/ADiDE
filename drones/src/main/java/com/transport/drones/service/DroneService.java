@@ -15,12 +15,15 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Service;
 
 import com.transport.drones.model.Drone;
+import org.springframework.web.servlet.LocaleResolver;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class DroneService {
     private final DroneRepository repository;
+    private final MessageSource messageSource;
+    private final LocaleResolver localeResolver;
 
     public Iterable<Drone> getAllDrones(){
         return repository.findAll();
@@ -49,9 +52,9 @@ public class DroneService {
         }
 
         drone.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DronesController.class).getDroneById(id, request)).withSelfRel());
-        drone.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DronesController.class).addDrone(drone, null)).withRel("create"));
-        drone.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DronesController.class).updateDrone(updatedDrone, id, null)).withRel("update"));
-        drone.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DronesController.class).deleteDroneById(id, null)).withRel("delete"));
+        drone.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DronesController.class).addDrone(drone, null)).withRel(messageSource.getMessage("hateoas.create.link_name", new Object[]{}, localeResolver.resolveLocale(request)))));
+        drone.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DronesController.class).updateDrone(updatedDrone, id, null)).withRel(messageSource.getMessage("hateoas.update.link_name", new Object[]{}, localeResolver.resolveLocale(request)))));
+        drone.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DronesController.class).deleteDroneById(id, null)).withRel(messageSource.getMessage("hateoas.delete.link_name", new Object[]{}, localeResolver.resolveLocale(request)))));
         return drone;
     }
 
@@ -70,7 +73,3 @@ public class DroneService {
     }
 
 }
-
-
-
-
