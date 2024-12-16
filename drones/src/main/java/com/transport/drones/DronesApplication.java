@@ -5,11 +5,14 @@ import org.springframework.boot.actuate.info.InfoContributor;
 import org.springframework.boot.actuate.info.MapInfoContributor;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @SpringBootApplication
+@PropertySource("/config/drones-${spring.profiles.active}.properties")
 public class DronesApplication {
 
 	public static void main(String[] args) {
